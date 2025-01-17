@@ -7,6 +7,7 @@ from sms_verification import SMSVerification
 from trial_manager import TrialManager
 from account_creator import AccountCreator
 import logging
+import os
 
 # Initialize Managers
 proxy_manager = ProxyManager(['your_actual_proxy1:port', 'your_actual_proxy2:port', 'your_actual_proxy3:port'])
@@ -16,6 +17,11 @@ trial_manager = TrialManager()
 
 # Placeholder for wallet address
 wallet_address = "your_wallet_address_placeholder"
+
+# Optional: Set default values for environment variables if not set
+TWILIO_ACCOUNT_SID = os.getenv('TWILIO_ACCOUNT_SID', 'default_account_sid')
+TWILIO_AUTH_TOKEN = os.getenv('TWILIO_AUTH_TOKEN', 'default_auth_token')
+TWILIO_PHONE_NUMBER = os.getenv('TWILIO_PHONE_NUMBER', 'default_phone_number')
 
 # Function to handle payment routing
 def route_payment(amount):
