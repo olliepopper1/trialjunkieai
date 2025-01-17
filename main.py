@@ -9,8 +9,8 @@ from account_creator import AccountCreator
 import logging
 
 # Initialize Managers
-proxy_manager = ProxyManager(['proxy1:port', 'proxy2:port', 'proxy3:port'])
-email_manager = EmailManager('example.com')
+proxy_manager = ProxyManager(['your_actual_proxy1:port', 'your_actual_proxy2:port', 'your_actual_proxy3:port'])
+email_manager = EmailManager('your_email@example.com')
 phone_manager = PhoneManager('your_account_sid', 'your_auth_token', 'your_twilio_number')
 trial_manager = TrialManager()
 
