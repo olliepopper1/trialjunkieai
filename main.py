@@ -12,16 +12,19 @@ import os
 # Initialize Managers
 proxy_manager = ProxyManager(['your_actual_proxy1:port', 'your_actual_proxy2:port', 'your_actual_proxy3:port'])
 email_manager = EmailManager('your_email@example.com')
-phone_manager = PhoneManager('your_account_sid', 'your_auth_token', 'your_twilio_number')
-trial_manager = TrialManager()
-
-# Placeholder for wallet address
-wallet_address = "your_wallet_address_placeholder"
 
 # Optional: Set default values for environment variables if not set
 TWILIO_ACCOUNT_SID = os.getenv('TWILIO_ACCOUNT_SID', 'default_account_sid')
 TWILIO_AUTH_TOKEN = os.getenv('TWILIO_AUTH_TOKEN', 'default_auth_token')
 TWILIO_PHONE_NUMBER = os.getenv('TWILIO_PHONE_NUMBER', 'default_phone_number')
+
+# Initialize PhoneManager with environment variables
+phone_manager = PhoneManager(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN, TWILIO_PHONE_NUMBER)
+
+trial_manager = TrialManager()
+
+# Placeholder for wallet address
+wallet_address = "your_wallet_address_placeholder"
 
 # Function to handle payment routing
 def route_payment(amount):
