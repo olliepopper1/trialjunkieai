@@ -30,23 +30,27 @@ def main():
 
     print('Welcome to the Automated Trial Platform!')
     try:
-        # Example of user input handling
-        service_name = input('Enter the service name (e.g., Netflix): ')
+        # User input for service selection
+        service_name = input('Enter the service name (e.g., Netflix, Hulu): ')
         username = input('Enter a username: ')
         email = email_manager.generate_unique_email(username)
         password = input('Enter a password: ')
 
-        # Create account
+        # Create account based on the service
         creator = AccountCreator(proxy=proxy_manager.get_random_proxy())
-        creator.create_account('https://example.com/signup', {'username': username, 'email': email, 'password': password})
+        if service_name.lower() == 'netflix':
+            creator.create_account('https://www.netflix.com/signup', {'username': username, 'email': email, 'password': password})
+        elif service_name.lower() == 'hulu':
+            creator.create_account('https://www.hulu.com/start', {'username': username, 'email': email, 'password': password})
+        else:
+            print("Service not supported.")
 
-        # Add trial
+        # Proceed with adding trial and notifications
         trial_manager.add_trial(username, service_name, datetime.datetime.now(), 30)
         logging.info(f'Trial added for {username} on {service_name}.')
         print(f'Trial added for {username} on {service_name}.')
-
-        # Notify user of trial expiration
         trial_manager.notify_user(username)
+
     except Exception as e:
         logging.error(f'An error occurred: {e}')
         print(f'An error occurred: {e}')
