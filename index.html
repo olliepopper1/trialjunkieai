@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wallet Connect Example</title>
+    <script src="https://cdn.jsdelivr.net/npm/ethers/dist/ethers.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@walletconnect/web3-provider/dist/umd/index.min.js"></script>
+    <style>
+        body {
+            background-color: white;
+            color: black;
+            font-family: 'Arial', sans-serif;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+            background-color: black;
+            color: red;
+        }
+        .logo {
+            height: 50px;
+        }
+        .url-placeholder, .telegram-placeholder, .discord-placeholder {
+            color: red;
+            text-decoration: none;
+            margin-left: 15px;
+            transition: color 0.3s;
+        }
+        .url-placeholder:hover, .telegram-placeholder:hover, .discord-placeholder:hover {
+            color: white;
+        }
+        .search-bar {
+            margin: 20px;
+            display: flex;
+            align-items: center;
+        }
+        .search-input {
+            padding: 10px;
+            border: 1px solid black;
+            border-radius: 5px;
+            transition: border 0.3s;
+        }
+        .search-input:focus {
+            border: 1px solid red;
+        }
+        .search-button {
+            padding: 10px 15px;
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 10px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .search-button:hover {
+            background-color: darkred;
+            transform: scale(1.05);
+        }
+        .wallet-connection {
+            margin: 20px;
+            display: flex;
+            align-items: center;
+        }
+        .wallet-input {
+            padding: 10px;
+            border: 1px solid black;
+            border-radius: 5px;
+            transition: border 0.3s;
+        }
+        .wallet-input:focus {
+            border: 1px solid red;
+        }
+        .connect-button {
+            padding: 10px 15px;
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 10px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .connect-button:hover {
+            background-color: darkred;
+            transform: scale(1.05);
+        }
+        .wallet-button {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .wallet-button:hover {
+            background-color: #3e8e41;
+        }
+        .wallet-connected {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+        }
+        .search-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .search-bar {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 50%;
+        }
+        .search-button {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .search-button:hover {
+            background-color: #3e8e41;
+        }
+        .wallet-container {
+            margin-top: 20px;
+        }
+        .wallet-input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 50%;
+        }
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .search-bar, .wallet-connection {
+                width: 100%;
+                margin: 10px 0;
+            }
+            .search-input, .wallet-input {
+                width: calc(100% - 20px);
+            }
+        }
+        .search-button, .connect-button {
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .search-button:hover, .connect-button:hover {
+            background-color: darkred;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="https://gitbook.com/favicon.ico" alt="GitBook Logo" class="logo" />
+        <a href="https://your-url-placeholder.com" class="url-placeholder">Your URL</a>
+        <div class="socials">
+            <a href="https://telegram.org" class="telegram-placeholder">Telegram</a>
+            <a href="https://discord.com" class="discord-placeholder">Discord</a>
+        </div>
+    </div>
+    <div class="search-bar">
+        <input type="text" placeholder="Search Integrations..." class="search-input" />
+        <button class="search-button">Search</button>
+    </div>
+    <div class="wallet-connection">
+        <input type="text" placeholder="Connect your wallet..." class="wallet-input" />
+        <button class="connect-button">Connect</button>
+    </div>
+    <h1>Connect Your Wallet</h1>
+    <div id="wallet-connect">
+        <button id="connect-wallet">Connect Wallet</button>
+        <div id="trial-info">
+            <p>Price per Trial: <span id="trial-price">$10</span></p>
+            <p>Available Trials: <span id="available-trials">5</span></p>
+        </div>
+    </div>
+    <div class="search-container">
+        <input type="text" placeholder="Search for a trial service..." class="search-bar">
+        <button class="search-button">Search</button>
+    </div>
+    <div id="wallet-connect">
+        <button id="connect-wallet">Connect Wallet</button>
+        <div id="trial-info">
+            <p>Price per Trial: <span id="trial-price">$10</span></p>
+            <p>Available Trials: <span id="available-trials">5</span></p>
+        </div>
+    </div>
+    <button id="connectWallet" class="wallet-button">Connect Wallet</button>
+    <div id="message"></div>
+    <div id="wallet-status" class="wallet-connected" style="display: none;">Connected</div>
+    <div class="wallet-container">
+        <label for="wallet-address">Payment Wallet Address:</label>
+        <input type="text" id="wallet-address" placeholder="Enter your wallet address" class="wallet-input">
+    </div>
+
+    <div id="documentation">
+        <h2>Documentation</h2>
+        <p>git add .
+        git commit -m "Resolved merge conflicts"
+            <img src="https://gitbook.com/favicon.ico" alt="GitBook Logo" style="height: 20px; vertical-align: middle;"/>
+            For detailed documentation, visit our GitBook Documentation.
+        </p>
+        <p>Join our community on Telegram for support and discussions.</p>
+        <p>Connect with us on Discord for real-time collaboration.</p>
+        <h3>Flow Descriptions</h3>
+        <p>Use the above links to engage with our community, report issues, and collaborate on features.</p>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.querySelector('.search-input');
+            const searchButton = document.querySelector('.search-button');
+
+            searchButton.addEventListener('click', function() {
+                const query = searchInput.value;
+                alert('Searching for: ' + query);
+                // Implement search functionality here
+            });
+
+            searchInput.addEventListener('keyup', function(event) {
+                if (event.key === 'Enter') {
+                    searchButton.click();
+                }
+            });
+        });
+
+        document.getElementById('connectWallet').onclick = async () => {
+            const provider = new WalletConnectProvider.default({
+                infuraId: "YOUR_INFURA_ID", // Required
+            });
+
+            try {
+                // Enable session (triggers QR Code modal)
+                await provider.enable();
+
+                // Create an ethers.js provider
+                const web3Provider = new ethers.providers.Web3Provider(provider);
+
+                // Get signer
+                const signer = web3Provider.getSigner();
+                const address = await signer.getAddress();
+                document.getElementById('message').innerText = `Connected: ${address}`;
+                document.getElementById('wallet-status').style.display = 'block';
+                document.getElementById('connectWallet').style.display = 'none';
+            } catch (error) {
+                document.getElementById('message').innerText = `Error: ${error.message}`;
+            }
+        };
+
+        if (window.solana) {
+            window.solana.on('connect', () => {
+                console.log('Connected to Phantom Wallet');
+            });
+
+            document.getElementById('connectWallet').onclick = async () => {
+                const response = await window.solana.connect();
+                document.getElementById('message').innerText = `Connected: ${response.publicKey.toString()}`;
+                document.getElementById('wallet-status').style.display = 'block';
+                document.getElementById('connectWallet').style.display = 'none';
+            };
+        }
+    </script>
+</body>
+</html>

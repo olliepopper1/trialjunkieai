@@ -1,0 +1,7 @@
+INFO:root:Application started
+INFO:root:Application started
+ERROR:root:An error occurred: Message: 'chromedriver' executable needs to be in PATH. Please see https://chromedriver.chromium.org/home
+
+INFO:root:Application started
+INFO:root:Application started
+ERROR:root:An error occurred: EOF when reading a line

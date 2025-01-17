@@ -1,0 +1,35 @@
+# Required Environment Variables
+
+1. **Twilio Credentials**:
+   - `TWILIO_ACCOUNT_SID`: Your Twilio account SID.
+   - `TWILIO_AUTH_TOKEN`: Your Twilio auth token.
+   - `TWILIO_PHONE_NUMBER`: The Twilio phone number you are using.
+
+2. **Proxy Configuration**:
+   - `PROXY1`: The address of your first proxy (e.g., `proxy1:port`).
+   - `PROXY2`: The address of your second proxy (e.g., `proxy2:port`).
+   - `PROXY3`: The address of your third proxy (e.g., `proxy3:port`).
+
+3. **Email Service Configuration**:
+   - `EMAIL_SERVICE_API_KEY`: API key for the email service you are using (if applicable).
+   - `EMAIL_DOMAIN`: The domain used for generating unique emails (if applicable).
+
+4. **Wallet Address**:
+   - `WALLET_ADDRESS`: The wallet address for payment routing, if your application handles payments.
+
+5. **Flask Configuration**:
+   - `FLASK_ENV`: Set to `production` for production environments.
+   - `SECRET_KEY`: A secret key for session management and CSRF protection. You can generate a random string for this.
+
+6. **Database Configuration** (if applicable):
+   - `DATABASE_URL`: The URL for your database connection (PostgreSQL, MySQL, etc.).
+
+7. **Additional Service Variables**:
+   - `NETFLIX_API_KEY`: If you are using an API for Netflix (if applicable).
+   - `HULU_API_KEY`: If you are using an API for Hulu (if applicable).
+
+8. **Netflix API Variables**:
+   - `NETFLIX_API_KEY`: If you are using an API for Netflix (if applicable).
+
+9. **Hulu API Variables**:
+   - `HULU_API_KEY`: If you are using an API for Hulu (if applicable).
