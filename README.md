@@ -31,14 +31,11 @@ python main.py
 ```
 
 ## Account Creation Flow
-
 The application allows users to create accounts for various services, including Netflix and Hulu. Here’s how the flow works:
-
 1. **User Input**: The user is prompted to enter the service they want to create an account for (e.g., Netflix or Hulu), along with their username and password.
 2. **Service Selection**: The application determines which service the user wants to create an account for based on their input.
 3. **Account Creation Logic**: The application uses the `AccountCreator` class to handle the account creation process, navigating to the respective signup pages and submitting the required information.
 4. **Trial Management**: After successfully creating the account, the application adds a trial for the user using the `TrialManager`.
-5. **User Notification**: The application notifies the user of the successful account creation and trial addition, providing feedback via console messages.
 
 ## Contributing
 Contributions are welcome! Please open an issue or submit a pull request for any enhancements or bug fixes.
